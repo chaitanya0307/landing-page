@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Zomato_logo.png/220px-Zomato_logo.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Zomato Clone</title>
+  </head>
+  <style>
+	* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.hero__section {
+  background: url(images/heroSectionBackground.png);
+  background-position: center;
+  background-size: cover;
+  color: white;
+  min-height: 60vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 48px;
+  height: 60px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  /* font-weight: 300; */
+}
+
+.navbar__menu_container {
+  display: flex;
+  gap: 20px;
+}
+
+.user__icon {
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  border: solid 1px white;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.hero__section_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(60vh - 60px);
+  gap: 32px;
+}
+
+.hero__section_logo {
+  width: 250px;
+  height: auto;
+}
+
+.hero__section_title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.hero__section_input_container {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.input_container_location,
+.input_container_search {
+  padding: 5px;
+  border: none;
+  outline: none;
+}
+
+.input_container_search {
+  width: 70%;
+}
+
+.input_container_location {
+  width: 30%;
+  border-right: 2px solid #e0e0e0;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar__menu_container .link {
+    display: none;
+  }
+
+  .user__icon {
+    display: flex;
+  }
+
+  .navbar {
+    padding: 16px;
+  }
+
+  .hero__section {
+    min-height: 80vh;
+  }
+
+  .hero__section_input_container {
+    flex-direction: column;
+    background-color: transparent;
+    width: 100%;
+  }
+
+  .input_container_location,
+  .input_container_search {
+    padding: 15px;
+    border-radius: 10px;
+    width: 90%;
+  }
+
+  .hero__section_container {
+    height: calc(80vh - 60px);
+  }
+
+  .input_container_location {
+    border-right: none;
+  }
+}
+
+.container {
+  margin: 48px auto;
+  width: 80%;
+}
+
+.we__offer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.we__offer .card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  transition: all 300ms ease-out;
+}
+
+.we__offer .card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.we__offer .card h2 {
+  padding: 10px 10px 0 10px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.we__offer .card p {
+  font-size: 13px;
+  padding: 0 10px 15px 10px;
+}
+
+.we__offer .card:hover {
+  transform: scale(1.05);
+}
+
+.collections h1 {
+  font-weight: 400;
+}
+
+.collections .sub__heading_container {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.sub__heading_container span:nth-child(2) {
+  color: #ff7e8b;
+  font-size: 13px;
+}
+
+.collections_card_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.collections_card_container .card {
+  height: 300px;
+  min-width: 240px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  position: relative;
+}
+
+.card1 {
+  background-image: url("images/collection1.jpg");
+}
+
+.card2 {
+  background-image: url("images/collection2.jpg");
+}
+
+.card3 {
+  background-image: url("images/collection3.jpg");
+}
+
+.card4 {
+  background-image: url("images/collection4.jpg");
+}
+
+.overlay {
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.05) 50%,
+    rgba(0, 0, 0, 0.05) 85%
+  );
+  width: 100%;
+  height: 100%;
+  display: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+}
+
+.collections_card_container .card .content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: white;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+.content h4 {
+  font-weight: 400;
+}
+
+.get__the_app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255, 251, 247);
+  width: 100%;
+  padding: 48px 48px;
+}
+
+.get__the_app .semiContainer {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.get__the_app .semiContainer .left {
+  flex: 2;
+}
+
+.get__the_app .semiContainer .left img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.get__the_app .semiContainer .right {
+  flex: 3;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.right h1 {
+  font-weight: 500;
+  font-size: 32px;
+}
+
+.right p {
+  font-size: 14px;
+}
+
+.semiContainer .right .radio__buttons_container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.semiContainer .right .radio__buttons_container div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.semiContainer .right .radio__buttons_container div input {
+  height: 15px;
+  width: 15px;
+  accent-color: rgb(239, 79, 95);
+}
+
+.semiContainer .right .input_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.input_container button,
+.input_container input {
+  padding: 10px 12px;
+}
+
+.input_container input {
+  border: 1.5px solid gray;
+  outline: none;
+  border-radius: 5px;
+  flex: auto;
+}
+
+.input_container button {
+  border: none;
+  background-color: rgb(239, 79, 95);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.right .download__app_container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.download__app_container h5 {
+  font-weight: 400;
+  color: gray;
+}
+
+.download__app_container div {
+  display: flex;
+  gap: 16px;
+}
+
+.download__app_container div img {
+  width: 35%;
+}
+
+@media only screen and (max-width: 1300px) {
+  .get__the_app .semiContainer .left {
+    flex: 1;
+  }
+
+  .get__the_app .semiContainer .right {
+    flex: 1;
+  }
+
+  .get__the_app .semiContainer {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .get__the_app {
+    padding: 2rem;
+  }
+
+  .get__the_app .semiContainer {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .get__the_app {
+    padding: 3rem 0;
+  }
+  .get__the_app .semiContainer {
+    width: 80%;
+    flex-direction: column;
+  }
+}
+
+.footer {
+  width: 100%;
+}
+
+.footer_section1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+}
+
+.footer_section1 img {
+  width: 120px;
+  height: auto;
+}
+
+.section1__buttonContainer {
+  display: flex;
+  gap: 16px;
+}
+
+.section1__buttonContainer button {
+  padding: 5px;
+  width: 90px;
+  border: 1px solid gray;
+  background-color: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navigation_container {
+  display: grid;
+  width: 90%;
+  margin: auto;
+
+  /* grid-template-columns:  1fr 1fr 1fr 1fr; */
+  grid-template-columns: repeat(5, 1fr);
+
+  gap: 1rem;
+  padding: 48px 0;
+}
+
+.link__container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.link__container h5 {
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 5px;
+  letter-spacing: 0.8px;
+}
+
+.footer__link {
+  text-decoration: none;
+  color: gray;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.footer__link:hover {
+  color: black;
+}
+
+.social__links_container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.social__links_container button {
+  background-color: black;
+  border: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social__links_container button i {
+  color: white;
+  font-size: 13px;
+}
+
+.footer__store_logos {
+  width: 100%;
+}
+
+.footer .disclamer {
+  width: 90%;
+  margin: auto;
+  padding: 20px 0;
+  font-size: 12px;
+  color: gray;
+  border-top: 1px solid gray;
+}
+
+@media only screen and (max-width: 900px) {
+  .navigation_container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navigation_container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .footer_section1 {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .navigation_container {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
+  <body>
+    <section class="hero__section">
+      <header>
+        <nav class="navbar">
+          <a href="#">Get The App</a>
+          <div class="navbar__menu_container">
+            <a href="#" class="link">Investor Relations</a>
+            <a href="#" class="link">Add Restaurant</a>
+            <a href="#" class="link">Log In</a>
+            <a href="#" class="link">Sign Up</a>
+            <a href="#" class="user__icon">
+              <i class="fa-solid fa-user"></i>
+            </a>
+          </div>
+        </nav>
+      </header>
+      <div class="hero__section_container">
+        <img
+          class="hero__section_logo"
+          src="https://static.vecteezy.com/system/resources/previews/020/975/671/original/zomato-logo-zomato-icon-transparent-free-png.png"
+          alt="Zomato Logo"
+        />
+        <h1 class="hero__section_title">
+          Deliver the best food & drinks in Delhi NCR
+        </h1>
+        <div class="hero__section_input_container">
+          <input
+            class="input_container_location"
+            type="text"
+            placeholder="YWCA, 1, Ashok Rd, Hanu"
+          />
+          <input
+            class="input_container_search"
+            type="text"
+            placeholder="Search for a restaurant, cuisine or a dish"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="container we__offer">
+      <div class="card">
+        <img src="https://inc42.com/wp-content/uploads/2022/11/zomato-ft-760x570.png" alt="" />
+        <h2>Order Online</h2>
+        <p>Stay home and order to your dooretep</p>
+      </div>
+      <div class="card">
+        <img src="https://inc42.com/wp-content/uploads/2019/07/Feature-zomato-6.jpg" alt="" />
+        <h2>Dining</h2>
+        <p>View the city's favourite dining venues</p>
+      </div>
+      <div class="card">
+        <img src="https://b.zmtcdn.com/data/pictures/0/17759330/50d00acf6325b328671a8ae9b33c429d.jpg?fit=around|285:195&crop=285:195;*,*" alt="" />
+        <h2>Nightlife and Clubs</h2>
+        <p>Explore the city’s top nightlife outlets</p>
+      </div>
+    </section>
+
+    <section class="container collections">
+      <h1>Collections</h1>
+      <div class="sub__heading_container">
+        <span>
+          Explore curated lists of top restaurants, cafes, pubs, and bars in
+          Delhi NCR, based on trends
+        </span>
+        <span>All collections in Delhi NCR</span>
+      </div>
+      <div class="collections_card_container">
+        <div class="card card1">
+          <div class="overlay"></div>
+          <div class="content">
+            <h4>Live Cricket Screening</h4>
+            <span>58 Place</span>
+          </div>
+        </div>
+
+        <div class="card card2">
+          <div class="overlay"></div>
+		  <img src="" alt="">
+          <div class="content">
+            <h4>Devali special</h4>
+            <span>22 Place</span>
+          </div>
+        </div>
+
+        <div class="card card3">
+          <div class="overlay"></div>
+          <div class="content">
+            <h4>Newly Opened</h4>
+            <span>20 Place</span>
+          </div>
+        </div>
+
+        <div class="card card4">
+          <div class="overlay"></div>
+          <div class="content">
+            <h4>Trending This Week</h4>
+            <span>30 Place</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container get__the_app">
+      <div class="semiContainer">
+        <div class="left">
+          <img src="https://static.vecteezy.com/system/resources/previews/020/975/671/original/zomato-logo-zomato-icon-transparent-free-png.png" alt="banner" />
+        </div>
+        <div class="right">
+          <h1>Get the Zomato App</h1>
+
+          <p>
+            We will send you a link, open it on your phone to download the app.
+          </p>
+
+          <div class="radio__buttons_container">
+            <div>
+              <input type="radio" id="email" name="download_app" />
+              <label for="email" style="font-size: 14px">Email</label>
+            </div>
+            <div>
+              <input type="radio" id="phone" name="download_app" />
+              <label for="phone" style="font-size: 14px">Phone</label>
+            </div>
+          </div>
+
+          <div class="input_container">
+            <input type="text" placeholder="Email" />
+            <button>Share App Link</button>
+          </div>
+
+          <div class="download__app_container">
+            <h5>Download App From</h5>
+            <div>
+              <img src="images/playStore.png" alt="" />
+              <img src="images/appleStore.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer_section1">
+        <img src="https://static.vecteezy.com/system/resources/previews/020/975/671/original/zomato-logo-zomato-icon-transparent-free-png.png" alt="zomato logo" />
+        <div class="section1__buttonContainer">
+          <button>
+            <img
+              src="https://flagcdn.com/w40/in.png"
+              alt="India"
+              style="width: 17px"
+            />
+            India
+          </button>
+          <button>
+            <i class="fa fa-globe" aria-hidden="true"></i> English
+          </button>
+        </div>
+      </div>
+      <div class="navigation_container">
+        <div class="link__container">
+          <h5>ABOUT ZOMATO</h5>
+          <a class="footer__link" href="#">Who we are</a>
+          <a class="footer__link" href="#">Blogs</a>
+          <a class="footer__link" href="#">Work with us</a>
+          <a class="footer__link" href="#">Investor Relations</a>
+          <a class="footer__link" href="#">Report Fraud</a>
+        </div>
+
+        <div class="link__container">
+          <h5>ZOMAVERSE</h5>
+          <a class="footer__link" href="#">Zomato</a>
+          <a class="footer__link" href="#">Feeding India</a>
+          <a class="footer__link" href="#">Hyperpuer</a>
+          <a class="footer__link" href="#">Zomaland</a>
+        </div>
+
+        <div class="link__container">
+          <h5>FOR RESTAURANTS</h5>
+          <a class="footer__link" href="#">Partner With Us</a>
+          <a class="footer__link" href="#">App For You</a>
+          <br />
+          <h5>FOR ENTERPRISES</h5>
+          <a class="footer__link" href="#">Zomato For Work</a>
+        </div>
+
+        <div class="link__container">
+          <h5>LERN MORE</h5>
+          <a class="footer__link" href="#">Privacy</a>
+          <a class="footer__link" href="#">Security</a>
+          <a class="footer__link" href="#">Terms</a>
+          <a class="footer__link" href="#">Sitemap</a>
+        </div>
+
+        <div class="link__container">
+          <h5>SOCIAL LINKS</h5>
+          <div class="social__links_container">
+            <button><i class="fa-brands fa-linkedin-in"></i></button>
+            <button><i class="fa-brands fa-instagram"></i></button>
+            <button><i class="fa-brands fa-twitter"></i></button>
+            <button><i class="fa-brands fa-youtube"></i></button>
+            <button><i class="fa-brands fa-facebook-f"></i></button>
+          </div>
+          <br />
+          <img src="images/appleStore.png" alt="" class="footer__store_logos" />
+          <img src="images/playStore.png" alt="" class="footer__store_logos" />
+        </div>
+      </div>
+      <p class="disclamer">
+        By continuing past this page, you agree to our Terms of Service, Cookie
+        Policy, Privacy Policy and Content Policies. All trademarks are
+        properties of their respective owners. 2008-2022 © Zomato™ Ltd. All
+        rights reserved.
+      </p>
+    </footer>
+  </body>
+</html>
